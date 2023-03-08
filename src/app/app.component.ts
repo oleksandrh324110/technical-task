@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
+import { SafeUrl } from '@angular/platform-browser'
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'test-task';
+  matInput = localStorage.getItem('matInput') ?? ''
+  qrCodeDownloadLink: SafeUrl = ''
+
+  update() {
+    localStorage.setItem('matInput', this.matInput)
+  }
+
+  onChangeURL(url: SafeUrl) {
+    this.qrCodeDownloadLink = url;
+  }
 }
