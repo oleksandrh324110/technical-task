@@ -1,7 +1,7 @@
 <div class="container">
   <mat-form-field class="matInput" appearance="outline">
     <mat-label>Text or link</mat-label>
-    <input value="lol" matInput type="text" (input)="update()" [(ngModel)]="matInput" placeholder="example: https://google.com/">
+    <input autofocus value="lol" matInput type="text" (input)="update()" [(ngModel)]="matInput" placeholder="example: https://google.com/">
     <button *ngIf="matInput" matSuffix mat-icon-button aria-label="Clear" (click)="matInput=''; update()">
       <mat-icon>close</mat-icon>
     </button>
