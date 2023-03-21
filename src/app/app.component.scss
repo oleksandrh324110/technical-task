@@ -1,0 +1,41 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  mat-toolbar {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      list-style: none;
+      padding: 0;
+
+      li {
+
+        a {
+          padding: 13px;
+          color: #fff;
+          text-decoration: none;
+          transition: color .2s;
+
+          &.active {
+            color: #ddd;
+          }
+        }
+      }
+    }
+  }
+}
+
+.container {
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 60px 1rem 0;
+  text-align: center;
+}
