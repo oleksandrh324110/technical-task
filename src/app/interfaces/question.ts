@@ -1,8 +1,13 @@
-export enum QuestionType { SINGLE, MULTIPLE, OPEN}
+export enum QuestionType {
+  SINGLE = 'A single question',
+  MULTIPLE = 'Multiple question',
+  OPEN = 'Open question'
+}
 
 export interface Question {
-  text: string;
+  id: number
+  text: string
   type: QuestionType
-  creatingDate: Date
+  creatingDate: number
   answerOptions?: string
 }

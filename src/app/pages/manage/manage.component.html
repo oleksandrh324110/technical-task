@@ -1,9 +1,15 @@
 <div class="cards">
-  <mat-card *ngFor="let i of questions">
-    <mat-card-content>{{ i }}</mat-card-content>
+  <mat-card *ngFor="let question of getQuestions() | sortBy:'asc':'creatingDate'">
+    <mat-card-header>{{ question.text }}</mat-card-header>
+    <mat-card-footer>
+      <button aria-label="Example icon button with a heart icon" color="warn" mat-icon-button>
+        <mat-icon>favorite</mat-icon>
+      </button>
+      {{ question.type }} | {{ question.creatingDate | date:'medium' }}
+    </mat-card-footer>
   </mat-card>
 </div>
 
-<button aria-label="Example icon button with a delete icon" class="add-button" color="primary" mat-fab>
-  <mat-icon>add</mat-icon>
+<button (click)="createQuestion()" class="add-button" color="primary" mat-raised-button>
+  Create a new question
 </button>
