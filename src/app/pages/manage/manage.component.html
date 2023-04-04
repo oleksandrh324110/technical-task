@@ -1,15 +1,22 @@
 <div class="cards">
-  <mat-card *ngFor="let question of getQuestions() | sortBy:'asc':'creatingDate'">
-    <mat-card-header>{{ question.text }}</mat-card-header>
-    <mat-card-footer>
-      <button aria-label="Example icon button with a heart icon" color="warn" mat-icon-button>
-        <mat-icon>favorite</mat-icon>
-      </button>
-      {{ question.type }} | {{ question.creatingDate | date:'medium' }}
-    </mat-card-footer>
-  </mat-card>
+  <div *ngFor="let question of questions$ | async | sortBy:'asc':'creatingDate'" class="card">
+    <button [routerLink]="['/edit/', question.id]" class="edit-button" mat-icon-button>
+      <mat-icon>edit</mat-icon>
+    </button>
+
+    <mat-card>
+      <mat-card-header>{{ question.text }}</mat-card-header>
+      <mat-card-footer>
+        {{ question.type }} | {{ question.creatingDate | date:'medium' }}
+      </mat-card-footer>
+    </mat-card>
+
+    <button (click)="removeQuestion(question)" class="delete-button" color="warn" mat-icon-button>
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
 </div>
 
-<button (click)="createQuestion()" class="add-button" color="primary" mat-raised-button>
+<button class="add-button" color="primary" mat-raised-button routerLink="/create">
   Create a new question
 </button>

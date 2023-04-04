@@ -1,7 +1,7 @@
 export enum QuestionType {
-  SINGLE = 'A single question',
-  MULTIPLE = 'Multiple question',
-  OPEN = 'Open question'
+  SINGLE = 'A single choice',
+  MULTIPLE = 'Multiple choice',
+  OPEN = 'Open option'
 }
 
 export interface Question {

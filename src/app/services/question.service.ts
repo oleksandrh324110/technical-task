@@ -1,37 +1,27 @@
 import { Injectable } from '@angular/core'
 import { Question } from '../interfaces/question'
+import { BehaviorSubject } from 'rxjs'
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuestionService {
+  questions$ = new BehaviorSubject<Question[]>(JSON.parse(localStorage.getItem('questions') as string ?? '[]'))
   questions!: Question[]
 
   constructor() {
-    if (!localStorage.getItem('questions')) {
-      localStorage.setItem('questions', '[]')
-    }
-
-    this.questions = JSON.parse(localStorage.getItem('questions') as string)
-  }
-
-  getQuestions(): Question[] {
-    return this.questions
   }
 
   addQuestion(question: Question): void {
-    this.questions = [...this.questions, question]
+    this.questions = [...this.questions$.value, question]
+    this.questions$.next(this.questions)
     localStorage.setItem('questions', JSON.stringify(this.questions))
   }
 
-  // removeQuestion(question: Question): void {
-  //   this.questions = this.questions$.value.filter(i => i.text !== question.text)
-  //
-  //   localStorage.setItem('questions', JSON.stringify(this.questions))
-  //   this.questions$.next(this.questions)
-  // }
+  removeQuestion(question: Question): void {
+    this.questions = this.questions$.value.filter(i => i.id !== question.id)
 
-  // editQuestion(question: Question): void {
-  //   this.questions = this.questions$.value
-  // }
+    this.questions$.next(this.questions)
+    localStorage.setItem('questions', JSON.stringify(this.questions))
+  }
 }

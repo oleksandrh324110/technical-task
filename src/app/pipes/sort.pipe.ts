@@ -9,7 +9,7 @@ export type SortOrder = 'asc' | 'desc';
   pure: false
 })
 export class SortByPipe implements PipeTransform {
-  transform(value: Question[], sortOrder: SortOrder | string = 'asc', sortKey: keyof Question): Question[] {
+  transform(value: Question[] | null, sortOrder: SortOrder | string = 'asc', sortKey: keyof Question): Question[] {
     return value?.sort((a: any, b: any) => {
       if (a[sortKey] > b[sortKey]) {
         return -1
@@ -17,6 +17,6 @@ export class SortByPipe implements PipeTransform {
         return 1
       }
       return 0
-    })
+    }) as Question[]
   }
 }

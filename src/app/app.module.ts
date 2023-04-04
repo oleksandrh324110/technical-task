@@ -12,22 +12,32 @@ import { ListComponent } from './pages/list/list.component'
 import { AppComponent } from './app.component'
 import { ManageComponent } from './pages/manage/manage.component'
 import { SortByPipe } from './pipes/sort.pipe'
+import { CreateComponent } from './pages/create/create.component'
+import { ReactiveFormsModule } from '@angular/forms'
+import { MatInputModule } from '@angular/material/input'
+import { MatSelectModule } from '@angular/material/select'
+import { MatRadioModule } from '@angular/material/radio'
 
 @NgModule({
   declarations: [
     AppComponent,
     ListComponent,
     ManageComponent,
-    SortByPipe
+    SortByPipe,
+    CreateComponent
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]
