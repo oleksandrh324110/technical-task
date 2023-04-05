@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core'
-import { Question, QuestionType } from '../../interfaces/question'
+import { Question } from '../../interfaces/question'
 import { QuestionService } from '../../services/question.service'
 import { BehaviorSubject } from 'rxjs'
 
@@ -18,15 +18,6 @@ export class ManageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-
-  createQuestion() {
-    this.questionService.addQuestion({
-      text: 'lorem',
-      creatingDate: Date.now(),
-      id: this.i++,
-      type: QuestionType.SINGLE
-    })
   }
 
   removeQuestion(question: Question) {

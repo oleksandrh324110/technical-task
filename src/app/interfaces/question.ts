@@ -5,9 +5,8 @@ export enum QuestionType {
 }
 
 export interface Question {
-  id: number
   text: string
   type: QuestionType
   creatingDate: number
-  answerOptions?: string
+  answerOptions?: {}
 }

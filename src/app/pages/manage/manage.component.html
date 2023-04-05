@@ -1,6 +1,6 @@
 <div class="cards">
   <div *ngFor="let question of questions$ | async | sortBy:'asc':'creatingDate'" class="card">
-    <button [routerLink]="['/edit/', question.id]" class="edit-button" mat-icon-button>
+    <button [routerLink]="['/edit/', question.creatingDate]" class="edit-button" mat-icon-button>
       <mat-icon>edit</mat-icon>
     </button>
 
