@@ -2,15 +2,16 @@ import { Component } from '@angular/core'
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Question, QuestionType } from '../../interfaces/question'
 import { QuestionService } from '../../services/question.service'
-import { Router } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.scss']
+  selector: 'app-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.scss']
 })
-export class CreateComponent {
+export class EditComponent {
   QuestionType = QuestionType
+  creatingDate!: number
 
   form = new FormGroup({
     text: new FormControl('', Validators.required),
@@ -18,21 +19,19 @@ export class CreateComponent {
     answers: new FormArray<FormControl>([])
   })
 
-  constructor(public questionService: QuestionService, private router: Router) {
-    const valueToPatch = JSON.parse(localStorage.getItem('createFormData') ?? '{}')
+  constructor(public questionService: QuestionService, private router: Router, private route: ActivatedRoute) {
+    this.creatingDate = +this.route.snapshot.params['creatingDate']
+
+    const valueToPatch: any = this.questionService.questions$.value.find((i: Question) => i.creatingDate === this.creatingDate)
+
     this.form.patchValue(valueToPatch)
 
-    valueToPatch.answers?.forEach((answer: any, index: number) => {
+    valueToPatch.answers?.forEach((answer: any) => {
       if (!answer) return
       this.form.controls.answers.push(new FormControl(answer, Validators.required))
     })
 
     this.checkType()
-
-    this.form.valueChanges.subscribe((changes) => {
-      this.checkType()
-      localStorage.setItem('createFormData', JSON.stringify(changes))
-    })
   }
 
   removeAnswer(i: number) {
@@ -55,17 +54,16 @@ export class CreateComponent {
     }
   }
 
-  createQuestion() {
+  editQuestion() {
     const question: Question = {
       text: this.form.value.text ?? '',
       type: this.form.value.type as QuestionType,
-      creatingDate: Date.now(),
+      creatingDate: this.creatingDate,
       answers: this.form.value.type === QuestionType.OPEN ? undefined : this.form.value.answers
     }
 
-    this.questionService.addQuestion(question)
+    this.questionService.editQuestion(question)
 
-    localStorage.removeItem('createFormData')
     this.router.navigate(['/manage'])
   }
 

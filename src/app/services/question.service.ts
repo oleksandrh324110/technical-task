@@ -13,16 +13,24 @@ export class QuestionService {
   }
 
   addQuestion(question: Question): void {
-    console.log(question)
     this.questions = [...this.questions$.value, question]
     this.questions$.next(this.questions)
+
     localStorage.setItem('questions', JSON.stringify(this.questions))
   }
 
   removeQuestion(question: Question): void {
     this.questions = this.questions$.value.filter(i => i.creatingDate !== question.creatingDate)
-
     this.questions$.next(this.questions)
+
+    localStorage.setItem('questions', JSON.stringify(this.questions))
+  }
+
+  editQuestion(question: Question) {
+    this.questions = this.questions$.value.filter(i => i.creatingDate !== question.creatingDate)
+    this.questions = [...this.questions, question]
+    this.questions$.next(this.questions)
+    
     localStorage.setItem('questions', JSON.stringify(this.questions))
   }
 }

@@ -16,7 +16,8 @@ import { CreateComponent } from './pages/create/create.component'
 import { ReactiveFormsModule } from '@angular/forms'
 import { MatInputModule } from '@angular/material/input'
 import { MatSelectModule } from '@angular/material/select'
-import { MatRadioModule } from '@angular/material/radio'
+import { MatRadioModule } from '@angular/material/radio';
+import { EditComponent } from './pages/edit/edit.component'
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { MatRadioModule } from '@angular/material/radio'
     ListComponent,
     ManageComponent,
     SortByPipe,
-    CreateComponent
+    CreateComponent,
+    EditComponent
   ],
   imports: [
     ReactiveFormsModule,

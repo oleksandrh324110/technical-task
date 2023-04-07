@@ -11,7 +11,6 @@ import { BehaviorSubject } from 'rxjs'
 })
 export class ManageComponent implements OnInit {
   questions$: BehaviorSubject<Question[]>
-  i = 0
 
   constructor(public questionService: QuestionService) {
     this.questions$ = this.questionService.questions$
