@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, HostListener } from '@angular/core'
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Question, QuestionType } from '../../interfaces/question'
 import { QuestionService } from '../../services/question.service'
@@ -32,6 +32,11 @@ export class EditComponent {
     })
 
     this.checkType()
+  }
+
+  @HostListener('document:keydown.escape', ['$event'])
+  onKeydownHandler(event: KeyboardEvent) {
+    this.router.navigate(['/manage'])
   }
 
   removeAnswer(i: number) {

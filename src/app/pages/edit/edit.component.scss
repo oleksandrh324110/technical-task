@@ -27,10 +27,6 @@
         flex-direction: row;
         gap: 5px;
         align-items: center;
-
-        mat-form-field {
-          width: 100%;
-        }
       }
     }
   }
@@ -39,4 +35,8 @@
     margin-top: 2rem;
     float: right;
   }
+}
+
+mat-form-field {
+  width: 100%;
 }

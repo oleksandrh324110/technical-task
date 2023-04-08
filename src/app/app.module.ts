@@ -17,7 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms'
 import { MatInputModule } from '@angular/material/input'
 import { MatSelectModule } from '@angular/material/select'
 import { MatRadioModule } from '@angular/material/radio';
-import { EditComponent } from './pages/edit/edit.component'
+import { EditComponent } from './pages/edit/edit.component';
+import { AutofocusDirective } from './directives/autofocus.directive'
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { EditComponent } from './pages/edit/edit.component'
     ManageComponent,
     SortByPipe,
     CreateComponent,
-    EditComponent
+    EditComponent,
+    AutofocusDirective
   ],
   imports: [
     ReactiveFormsModule,

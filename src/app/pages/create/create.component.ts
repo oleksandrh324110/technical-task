@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import { Component, HostListener } from '@angular/core'
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Question, QuestionType } from '../../interfaces/question'
 import { QuestionService } from '../../services/question.service'
@@ -11,7 +11,6 @@ import { Router } from '@angular/router'
 })
 export class CreateComponent {
   QuestionType = QuestionType
-
   form = new FormGroup({
     text: new FormControl('', Validators.required),
     type: new FormControl('', Validators.required),
@@ -33,6 +32,11 @@ export class CreateComponent {
       this.checkType()
       localStorage.setItem('createFormData', JSON.stringify(changes))
     })
+  }
+
+  @HostListener('document:keydown.escape', ['$event'])
+  onKeydownHandler(event: KeyboardEvent) {
+    this.router.navigate(['/manage'])
   }
 
   removeAnswer(i: number) {

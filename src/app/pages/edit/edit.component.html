@@ -1,9 +1,9 @@
 <mat-card class="form-card">
-  <mat-card-content>
-    <form [formGroup]="form">
+  <form [formGroup]="form">
+    <mat-card-content>
       <mat-form-field appearance="outline">
         <mat-label>Question text</mat-label>
-        <input formControlName="text" matInput type="text">
+        <input autofocus formControlName="text" matInput type="text">
       </mat-form-field>
       <mat-radio-group aria-label="Select an option" formControlName="type">
         <mat-radio-button [value]="QuestionType.SINGLE">{{ QuestionType.SINGLE }}</mat-radio-button>
@@ -22,7 +22,7 @@
                       || form.value.type === QuestionType.MULTIPLE && form.controls.answers.length > 2"
                   class="delete-button"
                   color="warn"
-                  mat-icon-button type="submit">
+                  mat-icon-button type="button">
             <mat-icon>delete</mat-icon>
           </button>
         </div>
@@ -30,12 +30,11 @@
           Add a possible answer
         </button>
       </div>
-    </form>
-    <button (click)="editQuestion()"
-            [disabled]="disabled()"
-            class="create-button" color="accent" mat-raised-button
-            type="button">
-      Edit this question
-    </button>
-  </mat-card-content>
+      <button (click)="editQuestion()"
+              [disabled]="disabled()"
+              class="create-button" color="accent" mat-raised-button>
+        Edit this question
+      </button>
+    </mat-card-content>
+  </form>
 </mat-card>

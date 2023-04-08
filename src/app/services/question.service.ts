@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs'
   providedIn: 'root'
 })
 export class QuestionService {
-  questions$ = new BehaviorSubject<Question[]>(JSON.parse(localStorage.getItem('questions') as string ?? '[]'))
+  questions$ = new BehaviorSubject<Question[]>(JSON.parse(localStorage.getItem('questions') ?? '[]'))
   questions!: Question[]
 
   constructor() {
@@ -30,7 +30,7 @@ export class QuestionService {
     this.questions = this.questions$.value.filter(i => i.creatingDate !== question.creatingDate)
     this.questions = [...this.questions, question]
     this.questions$.next(this.questions)
-    
+
     localStorage.setItem('questions', JSON.stringify(this.questions))
   }
 }
