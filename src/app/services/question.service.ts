@@ -7,9 +7,15 @@ import { BehaviorSubject } from 'rxjs'
 })
 export class QuestionService {
   questions$ = new BehaviorSubject<Question[]>(JSON.parse(localStorage.getItem('questions') ?? '[]'))
+  unansweredQuestions$ = new BehaviorSubject<Question[]>([])
+  answeredQuestions$ = new BehaviorSubject<Question[]>([])
   questions!: Question[]
 
   constructor() {
+    this.questions$.subscribe((questions) => {
+      this.unansweredQuestions$?.next(questions.filter((i) => !i.answer))
+      this.answeredQuestions$?.next(questions.filter((i) => !!i.answer))
+    })
   }
 
   addQuestion(question: Question): void {

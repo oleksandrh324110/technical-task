@@ -1,5 +1,7 @@
 import { Component } from '@angular/core'
 import { Question } from '../../interfaces/question'
+import { QuestionService } from '../../services/question.service'
+import { BehaviorSubject } from 'rxjs'
 
 @Component({
   selector: 'app-list',
@@ -7,6 +9,11 @@ import { Question } from '../../interfaces/question'
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent {
-  answeredQuestions!: Question[]
-  unansweredQuestions!: Question[]
+  unansweredQuestions$: BehaviorSubject<Question[]>
+  answeredQuestions$: BehaviorSubject<Question[]>
+
+  constructor(private questionService: QuestionService) {
+    this.unansweredQuestions$ = this.questionService.unansweredQuestions$
+    this.answeredQuestions$ = this.questionService.answeredQuestions$
+  }
 }
