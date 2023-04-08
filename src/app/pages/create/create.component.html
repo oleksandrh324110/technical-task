@@ -1,25 +1,25 @@
 <mat-card class="form-card">
-  <form [formGroup]="form">
+  <form (ngSubmit)="createQuestion()" [formGroup]="form">
     <mat-card-content>
       <mat-form-field appearance="outline">
         <mat-label>Question text</mat-label>
         <input autofocus class="text-field" formControlName="text" matInput type="text">
       </mat-form-field>
-      <mat-radio-group aria-label="Select an option" formControlName="type">
+      <mat-radio-group formControlName="type">
         <mat-radio-button [value]="QuestionType.SINGLE">{{ QuestionType.SINGLE }}</mat-radio-button>
         <mat-radio-button [value]="QuestionType.MULTIPLE">{{ QuestionType.MULTIPLE }}</mat-radio-button>
         <mat-radio-button [value]="QuestionType.OPEN">{{ QuestionType.OPEN }}</mat-radio-button>
       </mat-radio-group>
 
-      <div *ngIf="form.value.type !== QuestionType.OPEN" class="answers" formArrayName="answers">
-        <div *ngFor="let answer of form.controls.answers.controls; index as i" class="answer">
+      <div *ngIf="form.value.type !== QuestionType.OPEN" class="answerOptions" formArrayName="answerOptions">
+        <div *ngFor="let answer of form.controls.answerOptions.controls; index as i" class="answerOption">
           <mat-form-field appearance="outline" subscriptSizing="dynamic">
             <mat-label>{{ i + 1 }}-th option</mat-label>
             <input [formControlName]="i" matInput>
           </mat-form-field>
           <button (click)="removeAnswer(i)"
-                  *ngIf="form.value.type === QuestionType.SINGLE && form.controls.answers.length > 1
-                      || form.value.type === QuestionType.MULTIPLE && form.controls.answers.length > 2"
+                  *ngIf="form.value.type === QuestionType.SINGLE && form.controls.answerOptions.length > 1
+                      || form.value.type === QuestionType.MULTIPLE && form.controls.answerOptions.length > 2"
                   class="delete-button"
                   color="warn"
                   mat-icon-button type="button">
@@ -30,10 +30,11 @@
           Add a possible answer
         </button>
       </div>
-      <button (click)="createQuestion()"
-              [disabled]="disabled()"
-              class="create-button" color="accent" mat-raised-button>
-        Create this question
+      <button
+        [disabled]="disabled()"
+        class="create-button" color="accent" mat-raised-button
+        type="submit">
+        Create
       </button>
     </mat-card-content>
   </form>

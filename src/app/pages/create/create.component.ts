@@ -14,16 +14,17 @@ export class CreateComponent {
   form = new FormGroup({
     text: new FormControl('', Validators.required),
     type: new FormControl('', Validators.required),
-    answers: new FormArray<FormControl>([])
+    answerOptions: new FormArray<FormControl>([])
   })
 
   constructor(public questionService: QuestionService, private router: Router) {
     const valueToPatch = JSON.parse(localStorage.getItem('createFormData') ?? '{}')
+
     this.form.patchValue(valueToPatch)
 
-    valueToPatch.answers?.forEach((answer: any, index: number) => {
-      if (!answer) return
-      this.form.controls.answers.push(new FormControl(answer, Validators.required))
+    valueToPatch.answerOptions?.forEach((answerOption: any) => {
+      if (!answerOption) return
+      this.form.controls.answerOptions.push(new FormControl(answerOption, Validators.required))
     })
 
     this.checkType()
@@ -34,27 +35,27 @@ export class CreateComponent {
     })
   }
 
-  @HostListener('document:keydown.escape', ['$event'])
-  onKeydownHandler(event: KeyboardEvent) {
+  @HostListener('document:keydown.escape')
+  onKeydownHandler() {
     this.router.navigate(['/manage'])
   }
 
   removeAnswer(i: number) {
-    this.form.controls.answers.removeAt(i)
+    this.form.controls.answerOptions.removeAt(i)
   }
 
   addAnswer() {
-    this.form.controls.answers.push(new FormControl('', Validators.required))
+    this.form.controls.answerOptions.push(new FormControl('', Validators.required))
   }
 
   checkType() {
     if (this.form.value.type === QuestionType.SINGLE) {
-      if (!this.form.controls.answers.controls.length) {
-        this.form.controls.answers.push(new FormControl('', Validators.required))
+      if (!this.form.controls.answerOptions.controls.length) {
+        this.form.controls.answerOptions.push(new FormControl('', Validators.required))
       }
     } else if (this.form.value.type === QuestionType.MULTIPLE) {
-      while (this.form.controls.answers.length < 2) {
-        this.form.controls.answers.push(new FormControl('', Validators.required))
+      while (this.form.controls.answerOptions.length < 2) {
+        this.form.controls.answerOptions.push(new FormControl('', Validators.required))
       }
     }
   }
@@ -64,7 +65,7 @@ export class CreateComponent {
       text: this.form.value.text ?? '',
       type: this.form.value.type as QuestionType,
       creatingDate: Date.now(),
-      answers: this.form.value.type === QuestionType.OPEN ? undefined : this.form.value.answers
+      answerOptions: this.form.value.type === QuestionType.OPEN ? undefined : this.form.value.answerOptions
     }
 
     this.questionService.addQuestion(question)

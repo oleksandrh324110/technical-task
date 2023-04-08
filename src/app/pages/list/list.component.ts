@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
+import { Question } from '../../interfaces/question'
 
 @Component({
   selector: 'app-list',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent {
-
+  answeredQuestions!: Question[]
+  unansweredQuestions!: Question[]
 }

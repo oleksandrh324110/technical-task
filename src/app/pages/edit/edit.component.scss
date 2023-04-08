@@ -14,14 +14,14 @@
       justify-content: space-around;
     }
 
-    .answers {
+    .answerOptions {
       margin-top: 1rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 10px;
 
-      .answer {
+      .answerOption {
         width: 80%;
         display: flex;
         flex-direction: row;
