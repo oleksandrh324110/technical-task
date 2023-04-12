@@ -5,7 +5,7 @@
         <mat-label>Question text</mat-label>
         <input autofocus formControlName="text" matInput type="text">
       </mat-form-field>
-      <mat-radio-group aria-label="Select an option" formControlName="type">
+      <mat-radio-group formControlName="type">
         <mat-radio-button [value]="QuestionType.SINGLE">{{ QuestionType.SINGLE }}</mat-radio-button>
         <mat-radio-button [value]="QuestionType.MULTIPLE">{{ QuestionType.MULTIPLE }}</mat-radio-button>
         <mat-radio-button [value]="QuestionType.OPEN">{{ QuestionType.OPEN }}</mat-radio-button>
@@ -26,7 +26,7 @@
             <mat-icon>delete</mat-icon>
           </button>
         </div>
-        <button (click)="addAnswer()" color="primary" mat-raised-button type="button">
+        <button (click)="addAnswer()" *ngIf="form.value.type" color="primary" mat-raised-button type="button">
           Add a possible answer
         </button>
       </div>

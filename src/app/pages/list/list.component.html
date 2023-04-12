@@ -3,21 +3,40 @@
     <div *ngFor="let question of unansweredQuestions$ | async | sortBy:'asc':'creatingDate'">
       <mat-card>
         <mat-card-header>{{ question.text }}</mat-card-header>
+        <mat-card-content>
+          <form class="answerForm">
+            <mat-radio-group *ngIf="question.type === QuestionType.SINGLE || question.type === QuestionType.MULTIPLE"
+                             class="mat-radio-group">
+              <mat-radio-button
+                *ngFor="let answerOption of question.answerOptions">{{ answerOption }}</mat-radio-button>
+            </mat-radio-group>
+            <mat-form-field *ngIf="question.type === QuestionType.OPEN" appearance="outline" class="mat-form-field">
+              <mat-label>Your answer</mat-label>
+              <input matInput>
+            </mat-form-field>
+          </form>
+        </mat-card-content>
         <mat-card-footer>
           {{ question.type }} | {{ question.creatingDate | date:'medium' }}
         </mat-card-footer>
       </mat-card>
     </div>
+    <div *ngIf="!unansweredQuestions$.value.length" class="empty">
+      The list with unanswered questions is empty
+    </div>
   </div>
   <div class="verticalLine"></div>
   <div class="cards">
-    <div *ngFor="let question of unansweredQuestions$ | async | sortBy:'asc':'creatingDate'">
+    <div *ngFor="let question of answeredQuestions$ | async | sortBy:'asc':'creatingDate'">
       <mat-card>
         <mat-card-header>{{ question.text }}</mat-card-header>
         <mat-card-footer>
           {{ question.type }} | {{ question.creatingDate | date:'medium' }}
         </mat-card-footer>
       </mat-card>
+    </div>
+    <div *ngIf="!answeredQuestions$.value.length" class="empty">
+      The list with answered questions is empty
     </div>
   </div>
 </div>

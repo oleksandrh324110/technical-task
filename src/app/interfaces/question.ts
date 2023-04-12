@@ -8,7 +8,7 @@ export interface Question {
   text: string
   type: QuestionType
   creatingDate: number
-  answerOptions?: {}
+  answerOptions?: any[]
   answer?: string
   answerDate?: number
 }
