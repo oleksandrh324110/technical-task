@@ -18,20 +18,19 @@
 mat-card {
   text-align: left;
   margin-bottom: 1rem;
+  align-items: center;
 
   &-header {
   }
 
   &-content {
     margin-top: 10px;
-
-    .answerForm {
-      font-size: 5px;
-    }
+    text-align: center;
   }
 
   &-footer {
-    margin: 0 10px 5px 0;
+    width: 100%;
+    padding: 1rem 10px 5px 10px;
     font-size: 10px;
     text-align: right;
     color: #999;
@@ -45,8 +44,14 @@ mat-card {
 }
 
 .mat-form-field {
+  transform: scale(.9);
+  width: 100%;
 }
 
 .empty {
   font-size: 1.2rem;
+}
+
+.answer-button {
+  margin: 1rem;
 }
