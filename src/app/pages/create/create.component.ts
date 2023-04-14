@@ -27,10 +27,11 @@ export class CreateComponent {
       this.form.controls.answerOptions.push(new FormControl(answerOption, Validators.required))
     })
 
-    this.checkType()
+    this.addMissingControls()
 
     this.form.valueChanges.subscribe((changes) => {
-      this.checkType()
+      this.addMissingControls()
+
       localStorage.setItem('createFormData', JSON.stringify(changes))
     })
   }
@@ -48,15 +49,9 @@ export class CreateComponent {
     this.form.controls.answerOptions.push(new FormControl('', Validators.required))
   }
 
-  checkType() {
-    if (this.form.value.type === QuestionType.SINGLE) {
-      if (!this.form.controls.answerOptions.controls.length) {
-        this.form.controls.answerOptions.push(new FormControl('', Validators.required))
-      }
-    } else if (this.form.value.type === QuestionType.MULTIPLE) {
-      while (this.form.controls.answerOptions.length < 2) {
-        this.form.controls.answerOptions.push(new FormControl('', Validators.required))
-      }
+  addMissingControls() {
+    while (this.form.controls.answerOptions.length < 2) {
+      this.form.controls.answerOptions.push(new FormControl('', Validators.required))
     }
   }
 

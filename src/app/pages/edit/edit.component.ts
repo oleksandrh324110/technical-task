@@ -26,6 +26,7 @@ export class EditComponent {
 
     if (!valueToPatch) {
       this.router.navigate(['/manage'])
+      return
     }
 
     this.form.patchValue(valueToPatch)
@@ -35,10 +36,10 @@ export class EditComponent {
       this.form.controls.answerOptions.push(new FormControl(answerOption, Validators.required))
     })
 
-    this.checkType()
+    this.addMissingControls()
 
     this.form.valueChanges.subscribe(() => {
-      this.checkType()
+      this.addMissingControls()
     })
   }
 
@@ -55,7 +56,7 @@ export class EditComponent {
     this.form.controls.answerOptions.push(new FormControl('', Validators.required))
   }
 
-  checkType() {
+  addMissingControls() {
     if (this.form.value.type === QuestionType.SINGLE) {
       if (!this.form.controls.answerOptions.controls.length) {
         this.form.controls.answerOptions.push(new FormControl('', Validators.required))

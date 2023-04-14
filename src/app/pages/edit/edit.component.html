@@ -18,8 +18,7 @@
             <input [formControlName]="i" matInput>
           </mat-form-field>
           <button (click)="removeAnswer(i)"
-                  *ngIf="form.value.type === QuestionType.SINGLE && form.controls.answerOptions.length > 1
-                      || form.value.type === QuestionType.MULTIPLE && form.controls.answerOptions.length > 2"
+                  *ngIf="form.controls.answerOptions.length > 2"
                   class="delete-button"
                   color="warn"
                   mat-icon-button type="button">
