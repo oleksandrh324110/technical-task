@@ -3,7 +3,7 @@
     <mat-card-content>
       <mat-form-field appearance="outline">
         <mat-label>Question text</mat-label>
-        <input class="text-field" formControlName="text" matInput type="text" z>
+        <input autofocus class="text-field" formControlName="text" matInput type="text">
       </mat-form-field>
       <mat-radio-group formControlName="type">
         <mat-radio-button [value]="QuestionType.SINGLE">{{ QuestionType.SINGLE }}</mat-radio-button>

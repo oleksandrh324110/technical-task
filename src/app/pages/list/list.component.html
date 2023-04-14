@@ -1,41 +1,60 @@
 <div class="allQuestions">
   <div class="cards">
-    <div *ngFor="let question of unansweredQuestions$ | async | sortBy:'asc':'creatingDate'">
+    <div *ngFor="let question of unansweredQuestions$ | async; index as i" class="card">
       <mat-card>
         <mat-card-header>{{ question.text }}</mat-card-header>
         <mat-card-content>
-          <mat-radio-group *ngIf="question.type === QuestionType.SINGLE || question.type === QuestionType.MULTIPLE"
-                           class="mat-radio-group">
-            <mat-radio-button
-              *ngFor="let answerOption of question.answerOptions">{{ answerOption }}</mat-radio-button>
-          </mat-radio-group>
-          <mat-form-field *ngIf="question.type === QuestionType.OPEN" appearance="outline" class="mat-form-field"
-                          subscriptSizing="dynamic">
-            <mat-label>Your answer</mat-label>
-            <textarea #answer matInput></textarea>
-          </mat-form-field>
-          <button (click)="answerQuestion(question, answer.value)" class="answer-button" color="accent"
-                  mat-raised-button>Answer
-          </button>
+          <form (ngSubmit)="answerQuestion(question, answerForms[i])" [formGroup]="answerForms[i]">
+            <mat-radio-group *ngIf="question.type === QuestionType.SINGLE || question.type === QuestionType.MULTIPLE"
+                             class="mat-radio-group"
+                             formControlName="answer">
+              <mat-radio-button
+                *ngFor="let answerOption of question.answerOptions"
+                [value]="answerOption">{{ answerOption }}</mat-radio-button>
+            </mat-radio-group>
+            <mat-form-field *ngIf="question.type === QuestionType.OPEN" appearance="outline" class="mat-form-field"
+                            subscriptSizing="dynamic">
+              <mat-label>Your answer</mat-label>
+              <textarea formControlName="answer" matInput></textarea>
+            </mat-form-field>
+            <button [disabled]="answerForms[i].invalid" class="answer-button" color="accent" mat-raised-button>
+              Answer
+            </button>
+          </form>
         </mat-card-content>
-        <mat-card-footer>
-          {{ question.type }} | {{ question.creatingDate | date:'medium' }}
-        </mat-card-footer>
       </mat-card>
     </div>
     <div *ngIf="!unansweredQuestions$.value.length" class="empty">
       The list with unanswered questions is empty
     </div>
   </div>
+
   <div class="verticalLine"></div>
+
   <div class="cards">
-    <div *ngFor="let question of answeredQuestions$ | async | sortBy:'asc':'creatingDate'">
+    <div *ngFor="let question of answeredQuestions$ | async" class="card">
       <mat-card>
-        <mat-card-header>{{ question.text }}</mat-card-header>
-        <mat-card-footer>
-          {{ question.type }} | {{ question.creatingDate | date:'medium' }}
-        </mat-card-footer>
+        <mat-card-header>
+          <div><span
+            style="display: inline; color: #999; margin-right: 5px;">The question:</span>{{ question.text }}
+          </div>
+        </mat-card-header>
+        <mat-card-content>
+          <mat-radio-group *ngIf="question.type === QuestionType.SINGLE || question.type === QuestionType.MULTIPLE"
+                           class="mat-radio-group">
+            <mat-radio-button
+              *ngFor="let answerOption of question.answerOptions"
+              [checked]="question.answer === answerOption" [value]="answerOption"
+              disabled>{{ answerOption }}</mat-radio-button>
+          </mat-radio-group>
+          <div *ngIf="question.type === QuestionType.OPEN"
+               style="text-align: left; margin-left: 2rem;"><span
+            style="color: #999; margin-right: 5px;">The answer:</span>{{ question.answer }}</div>
+        </mat-card-content>
       </mat-card>
+      <button (click)="removeTheAnswerToQuestion(question)" class="delete-button" color="warn" mat-icon-button>
+        <mat-icon>delete</mat-icon>
+      </button>
     </div>
     <div *ngIf="!answeredQuestions$.value.length" class="empty">
       The list with answered questions is empty

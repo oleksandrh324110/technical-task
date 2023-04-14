@@ -15,32 +15,37 @@
 
 }
 
-mat-card {
-  text-align: left;
-  margin-bottom: 1rem;
+.card {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  width: 100%;
   align-items: center;
+  margin-bottom: 1rem;
 
-  &-header {
-  }
-
-  &-content {
-    margin-top: 10px;
-    text-align: center;
-  }
-
-  &-footer {
+  mat-card {
     width: 100%;
-    padding: 1rem 10px 5px 10px;
-    font-size: 10px;
-    text-align: right;
-    color: #999;
+    text-align: left;
+
+    &-header {
+      margin-left: 1rem;
+    }
+
+    &-content {
+      margin-top: 10px;
+      text-align: center;
+    }
   }
 }
 
 .mat-radio-group {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  flex-direction: column;
+  text-align: left;
+  margin-left: 2rem;
+
+  mat-radio-button {
+  }
 }
 
 .mat-form-field {
@@ -53,5 +58,5 @@ mat-card {
 }
 
 .answer-button {
-  margin: 1rem;
+  margin-top: 1rem;
 }

@@ -18,6 +18,22 @@ export class QuestionService {
     })
   }
 
+  sortQuestions(questions$: BehaviorSubject<Question[]>, sortOrder: 'asc' | 'desk' = 'asc', sortKey: keyof Question) {
+    let questions = questions$.value.sort((a: any, b: any) => {
+      if (a[sortKey] > b[sortKey]) {
+        return -1
+      } else if (a[sortKey] < b[sortKey]) {
+        return 1
+      }
+      return 0
+    })
+
+    if (sortOrder === 'desk')
+      questions = questions?.reverse()
+
+    questions$.next(questions)
+  }
+
   addQuestion(question: Question): void {
     this.questions = [...this.questions$.value, question]
     this.questions$.next(this.questions)
@@ -38,5 +54,13 @@ export class QuestionService {
     this.questions$.next(this.questions)
 
     localStorage.setItem('questions', JSON.stringify(this.questions))
+  }
+
+  answerQuestion(question: Question) {
+    this.editQuestion(question)
+  }
+
+  removeTheAnswerToQuestion(question: Question) {
+    this.editQuestion((question))
   }
 }

@@ -1,5 +1,5 @@
 <div class="cards">
-  <div *ngFor="let question of questions$ | async | sortBy:'asc':'creatingDate'" class="card">
+  <div *ngFor="let question of questions$ | async" class="card">
     <button [routerLink]="['/edit/', question.creatingDate]" class="edit-button" mat-icon-button>
       <mat-icon>edit</mat-icon>
     </button>
@@ -20,3 +20,4 @@
 <button class="add-button" color="primary" mat-raised-button routerLink="/create">
   Create a new question
 </button>
+
