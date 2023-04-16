@@ -1,16 +1,8 @@
-<div class="allQuestions">
+<div class="container">
   <div class="cards">
-    <div *ngFor="let question of unansweredQuestions$ | async; index as i" class="card">
-      <mat-card>
-        <mat-card-header>
-          <div><span
-            style="display: inline; color: #999; margin-right: 5px;">The question:</span>{{ question.text }}</div>
-        </mat-card-header>
-        <mat-card-content>
-          <app-unanswered-question-card [question]="question"></app-unanswered-question-card>
-        </mat-card-content>
-      </mat-card>
-    </div>
+    <app-unanswered-question-card *ngFor="let question of unansweredQuestions$ | async; index as i"
+                                  [question]="question"
+                                  class="card"></app-unanswered-question-card>
     <div *ngIf="!(unansweredQuestions$ | async)?.length" class="empty">
       The list with unanswered questions is empty
     </div>
@@ -19,19 +11,8 @@
   <div class="verticalLine"></div>
 
   <div class="cards">
-    <div *ngFor="let question of answeredQuestions$ | async" class="card">
-      <mat-card>
-        <mat-card-header>
-          <div>{{ question.text }}</div>
-        </mat-card-header>
-        <mat-card-content>
-          <app-answered-question-card [question]="question"></app-answered-question-card>
-        </mat-card-content>
-      </mat-card>
-      <button (click)="removeTheAnswerToQuestion(question)" class="delete-button" color="warn" mat-icon-button>
-        <mat-icon>delete</mat-icon>
-      </button>
-    </div>
+    <app-answered-question-card *ngFor="let question of answeredQuestions$ | async"
+                                [question]="question" class="card"></app-answered-question-card>
     <div *ngIf="!(answeredQuestions$ | async)?.length" class="empty">
       The list with answered questions is empty
     </div>

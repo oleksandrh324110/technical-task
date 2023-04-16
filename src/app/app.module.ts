@@ -20,11 +20,27 @@ import { EditComponent } from './pages/edit/edit.component'
 import { AutofocusDirective } from './directives/autofocus.directive'
 import { MatCheckboxModule } from '@angular/material/checkbox'
 import {
-  UnansweredQuestionCardComponent
-} from './shared/components/unanswered-question-card/unanswered-question-card.component'
+  UnansweredOpenQuestionComponent
+} from './pages/list/unanswered-question-card/unanswered-open-question/unanswered-open-question.component'
 import {
-  AnsweredQuestionCardComponent
-} from './shared/components/answered-question-card/answered-question-card.component'
+  UnansweredSingleQuestionComponent
+} from './pages/list/unanswered-question-card/unanswered-single-question/unanswered-single-question.component'
+import {
+  UnansweredMultipleQuestionComponent
+} from './pages/list/unanswered-question-card/unanswered-multiple-question/unanswered-multiple-question.component'
+import {
+  AnsweredMultipleQuestionComponent
+} from './pages/list/answered-question-card/answered-multiple-question/answered-multiple-question.component'
+import {
+  AnsweredSingleQuestionComponent
+} from './pages/list/answered-question-card/answered-single-question/answered-single-question.component'
+import {
+  AnsweredOpenQuestionComponent
+} from './pages/list/answered-question-card/answered-open-question/answered-open-question.component'
+import {
+  UnansweredQuestionCardComponent
+} from './pages/list/unanswered-question-card/unanswered-question-card.component'
+import { AnsweredQuestionCardComponent } from './pages/list/answered-question-card/answered-question-card.component'
 
 @NgModule({
   declarations: [
@@ -34,14 +50,23 @@ import {
     CreateComponent,
     EditComponent,
     AutofocusDirective,
+
     UnansweredQuestionCardComponent,
-    AnsweredQuestionCardComponent
+    UnansweredOpenQuestionComponent,
+    UnansweredSingleQuestionComponent,
+    UnansweredMultipleQuestionComponent,
+
+    AnsweredQuestionCardComponent,
+    AnsweredMultipleQuestionComponent,
+    AnsweredSingleQuestionComponent,
+    AnsweredOpenQuestionComponent
   ],
   imports: [
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,

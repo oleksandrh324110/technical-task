@@ -1,0 +1,4 @@
+<section>
+  <mat-checkbox *ngFor="let answerOption of question.answerOptions; index as i"
+                [checked]="question.answer![i]" disabled>{{ answerOption }}</mat-checkbox>
+</section>

@@ -1,0 +1,16 @@
+<mat-card>
+  <mat-card-header>
+    <div><span style="display: inline; color: #999; margin-right: 5px;">The question:</span>{{ question.text }}</div>
+  </mat-card-header>
+  <mat-card-content>
+    <app-answered-single-question *ngIf="question.type === QuestionType.SINGLE"
+                                  [question]="question"></app-answered-single-question>
+    <app-answered-multiple-question *ngIf="question.type === QuestionType.MULTIPLE"
+                                    [question]="question"></app-answered-multiple-question>
+    <app-answered-open-question *ngIf="question.type === QuestionType.OPEN"
+                                [question]="question"></app-answered-open-question>
+  </mat-card-content>
+</mat-card>
+<button (click)="removeTheAnswerToQuestion(question)" class="delete-button" color="warn" mat-icon-button>
+  <mat-icon>delete</mat-icon>
+</button>

@@ -1,0 +1,5 @@
+<mat-radio-group class="mat-radio-group">
+  <mat-radio-button *ngFor="let answerOption of question.answerOptions"
+                    [checked]="question.answer === answerOption" [value]="answerOption"
+                    disabled>{{ answerOption }}</mat-radio-button>
+</mat-radio-group>

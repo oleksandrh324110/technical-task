@@ -1,0 +1,7 @@
+<form (ngSubmit)="answerQuestion()" [formGroup]="form">
+  <mat-radio-group class="mat-radio-group" formControlName="answer">
+    <mat-radio-button *ngFor="let answerOption of question.answerOptions"
+                      [value]="answerOption">{{ answerOption }}</mat-radio-button>
+  </mat-radio-group>
+  <button *ngIf="form.valid" class="answer-button" color="accent" mat-raised-button type="submit">Answer</button>
+</form>

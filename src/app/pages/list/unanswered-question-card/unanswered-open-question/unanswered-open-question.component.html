@@ -1,0 +1,7 @@
+<form (ngSubmit)="answerQuestion()" [formGroup]="form">
+  <mat-form-field appearance="outline" class="mat-form-field" subscriptSizing="dynamic">
+    <mat-label>Your answer</mat-label>
+    <textarea formControlName="answer" matInput></textarea>
+  </mat-form-field>
+  <button *ngIf="form.valid" class="answer-button" color="accent" mat-raised-button type="submit">Answer</button>
+</form>

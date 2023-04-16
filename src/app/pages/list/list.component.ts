@@ -20,14 +20,4 @@ export class ListComponent {
     this.unansweredQuestions$ = this.questionService.unansweredQuestions$
     this.answeredQuestions$ = this.questionService.answeredQuestions$
   }
-
-  removeTheAnswerToQuestion(question: Question) {
-    delete question.answerDate
-    delete question.answer
-
-    this.questionService.removeTheAnswerToQuestion(question)
-
-    this.questionService.sortQuestions(this.questionService.unansweredQuestions$, 'asc', 'creatingDate')
-    this.questionService.sortQuestions(this.questionService.answeredQuestions$, 'asc', 'answerDate')
-  }
 }

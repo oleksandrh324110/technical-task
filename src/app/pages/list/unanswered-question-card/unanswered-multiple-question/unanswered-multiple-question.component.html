@@ -1,0 +1,10 @@
+<form (ngSubmit)="answerQuestion()" [formGroup]="form">
+  <section formArrayName="answer">
+    <mat-checkbox *ngFor="let answerOption of question.answerOptions; index as i"
+                  [formControlName]="i">{{ answerOption }}</mat-checkbox>
+  </section>
+  <button *ngIf="form.value?.answer.indexOf(true) !== -1" class="answer-button"
+          color="accent" mat-raised-button type="submit">
+    Answer
+  </button>
+</form>

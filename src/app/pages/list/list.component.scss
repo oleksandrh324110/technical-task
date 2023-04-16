@@ -1,4 +1,4 @@
-.allQuestions {
+.container {
   display: flex;
   flex-direction: row;
   align-items: stretch;
@@ -22,45 +22,8 @@
   width: 100%;
   align-items: center;
   margin-bottom: 1rem;
-
-  mat-card {
-    width: 100%;
-    text-align: left;
-
-    &-header {
-      margin-left: 1rem;
-    }
-
-    &-content {
-      margin-top: 10px;
-      text-align: center;
-    }
-  }
-}
-
-.mat-radio-group {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  margin-left: 2rem;
-}
-
-section {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-  margin-left: 2rem;
-}
-
-.mat-form-field {
-  transform: scale(.9);
-  width: 100%;
 }
 
 .empty {
   font-size: 1.2rem;
-}
-
-.answer-button {
-  margin-top: 1rem;
 }

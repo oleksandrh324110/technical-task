@@ -14,7 +14,7 @@ export class QuestionService {
   constructor() {
     this.questions$.subscribe((questions) => {
       this.unansweredQuestions$?.next(questions.filter((i) => !i.answer))
-      // this.answeredQuestions$?.next(questions.filter((i) => !!i.answer))
+      this.answeredQuestions$?.next(questions.filter((i) => !!i.answer))
     })
   }
 
