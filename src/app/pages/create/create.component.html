@@ -11,7 +11,8 @@
         <mat-radio-button [value]="QuestionType.OPEN">{{ QuestionType.OPEN }}</mat-radio-button>
       </mat-radio-group>
 
-      <div *ngIf="form.value.type !== QuestionType.OPEN" class="answerOptions" formArrayName="answerOptions">
+      <div *ngIf="form.value.type === QuestionType.SINGLE || form.value.type === QuestionType.MULTIPLE"
+           class="answerOptions" formArrayName="answerOptions">
         <div *ngFor="let answerOption of form.controls.answerOptions.controls; index as i" class="answerOption">
           <mat-form-field appearance="outline" subscriptSizing="dynamic">
             <mat-label>{{ i + 1 }}-th option</mat-label>

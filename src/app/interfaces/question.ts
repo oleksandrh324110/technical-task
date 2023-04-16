@@ -10,5 +10,5 @@ export interface Question {
   creatingDate: number
   answerDate?: number
   answerOptions?: string[]
-  answer?: string
+  answer?: string | string[]
 }

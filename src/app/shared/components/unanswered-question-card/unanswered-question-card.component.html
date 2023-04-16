@@ -1,0 +1,20 @@
+<mat-radio-group *ngIf="question.type === QuestionType.SINGLE"
+                 class="mat-radio-group"
+                 formControlName="answer">
+  <mat-radio-button
+    *ngFor="let answerOption of question.answerOptions"
+    [value]="answerOption">{{ answerOption }}</mat-radio-button>
+</mat-radio-group>
+<section *ngIf="question.type === QuestionType.MULTIPLE" formArrayName="answer">
+  <mat-checkbox *ngFor="let answerOption of question.answerOptions; index as i"
+                [formControlName]="i">{{ answerOption }}</mat-checkbox>
+</section>
+<mat-form-field *ngIf="question.type === QuestionType.OPEN" appearance="outline" class="mat-form-field"
+                subscriptSizing="dynamic">
+  <mat-label>Your answer</mat-label>
+  <textarea formControlName="answer" matInput></textarea>
+</mat-form-field>
+<button class="answer-button"
+        color="accent" mat-raised-button>
+  Answer
+</button>

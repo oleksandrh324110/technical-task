@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs'
   styleUrls: ['./manage.component.scss']
 })
 export class ManageComponent implements OnInit {
-  questions$!: BehaviorSubject<Question[]>
+  questions$: BehaviorSubject<Question[]>
 
   constructor(public questionService: QuestionService) {
     this.questionService.sortQuestions(this.questionService.questions$, 'asc', 'creatingDate')

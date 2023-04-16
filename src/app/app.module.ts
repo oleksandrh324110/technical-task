@@ -18,6 +18,13 @@ import { MatSelectModule } from '@angular/material/select'
 import { MatRadioModule } from '@angular/material/radio'
 import { EditComponent } from './pages/edit/edit.component'
 import { AutofocusDirective } from './directives/autofocus.directive'
+import { MatCheckboxModule } from '@angular/material/checkbox'
+import {
+  UnansweredQuestionCardComponent
+} from './shared/components/unanswered-question-card/unanswered-question-card.component'
+import {
+  AnsweredQuestionCardComponent
+} from './shared/components/answered-question-card/answered-question-card.component'
 
 @NgModule({
   declarations: [
@@ -26,7 +33,9 @@ import { AutofocusDirective } from './directives/autofocus.directive'
     ManageComponent,
     CreateComponent,
     EditComponent,
-    AutofocusDirective
+    AutofocusDirective,
+    UnansweredQuestionCardComponent,
+    AnsweredQuestionCardComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -39,7 +48,8 @@ import { AutofocusDirective } from './directives/autofocus.directive'
     MatCardModule,
     MatInputModule,
     MatSelectModule,
-    MatRadioModule
+    MatRadioModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
