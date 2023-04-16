@@ -1,6 +1,7 @@
 <div class="cards">
   <div *ngFor="let question of questions$ | async" class="card">
-    <button [routerLink]="['/edit/', question.creatingDate]" class="edit-button" mat-icon-button>
+    <button [routerLink]="['/edit/', question.creatingDate]" class="edit-button" mat-icon-button
+            matTooltip="Edit this question">
       <mat-icon>edit</mat-icon>
     </button>
 
@@ -11,7 +12,8 @@
       </mat-card-footer>
     </mat-card>
 
-    <button (click)="removeQuestion(question)" class="delete-button" color="warn" mat-icon-button>
+    <button (click)="removeQuestion(question)" class="delete-button" color="warn" mat-icon-button
+            matTooltip="Remove this question">
       <mat-icon>delete</mat-icon>
     </button>
   </div>

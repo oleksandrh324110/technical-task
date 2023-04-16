@@ -41,6 +41,7 @@ import {
   UnansweredQuestionCardComponent
 } from './pages/list/unanswered-question-card/unanswered-question-card.component'
 import { AnsweredQuestionCardComponent } from './pages/list/answered-question-card/answered-question-card.component'
+import { MatTooltipModule } from '@angular/material/tooltip'
 
 @NgModule({
   declarations: [
@@ -66,7 +67,7 @@ import { AnsweredQuestionCardComponent } from './pages/list/answered-question-ca
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    
+
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
@@ -74,7 +75,8 @@ import { AnsweredQuestionCardComponent } from './pages/list/answered-question-ca
     MatInputModule,
     MatSelectModule,
     MatRadioModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

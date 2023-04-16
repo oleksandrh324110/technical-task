@@ -11,6 +11,7 @@
                                 [question]="question"></app-answered-open-question>
   </mat-card-content>
 </mat-card>
-<button (click)="removeTheAnswerToQuestion(question)" class="delete-button" color="warn" mat-icon-button>
+<button (click)="removeTheAnswerToQuestion(question)" class="delete-button" color="warn"
+        mat-icon-button matTooltip="Roll back this answer">
   <mat-icon>delete</mat-icon>
 </button>
